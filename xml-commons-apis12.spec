@@ -30,14 +30,13 @@
 
 Name:           xml-commons-apis12
 Version:        1.2.04
-Release:        7
+Release:        8
 Summary:        JAXP 1.2, DOM 2, SAX 2.0.1, SAX2-ext 1.0 apis
 Group:          System/Libraries
 URL:            http://xml.apache.org/commons/
 License:        ASL 2.0 and W3C and Public Domain
 Source0:        xml-commons-external-1.2.04.tar.gz
 # svn export http://svn.apache.org/repos/asf/xml/commons/tags/xml-commons-external-1_2_04/
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Provides:       jaxp = 1.2
 Provides:       dom = 2
@@ -78,13 +77,13 @@ Summary:        Documents for %{name}
 ant -f xml-commons-external-1_2_04/java/external/build.xml jar javadoc
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
-install -d -m 755 $RPM_BUILD_ROOT%{_javadir}
+install -d -m 755 %{buildroot}%{_javadir}
 install -m 644 xml-commons-external-1_2_04/java/external/build/xml-apis.jar \
-    $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
+    %{buildroot}%{_javadir}/%{name}-%{version}.jar
 
-pushd $RPM_BUILD_ROOT%{_javadir}
+pushd %{buildroot}%{_javadir}
 for jar in *-%{version}*; do
 ln -sf ${jar} $(echo $jar | sed -e 's|-%{version}\.jar|.jar|');
 done
@@ -96,22 +95,15 @@ popd
 
 
 # javadoc
-install -d -m 755 $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+install -d -m 755 %{buildroot}%{_javadocdir}/%{name}-%{version}
 cp -pr xml-commons-external-1_2_04/java/external/build/docs/javadoc/* \
-    $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
+    %{buildroot}%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} %{buildroot}%{_javadocdir}/%{name}
 rm -rf xml-commons-external-1_2_04/java/external/build/docs/javadoc
 
 # manuals
-install -d -m 755 $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-cp -pr xml-commons-external-1_2_04/java/external/build/docs/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-
-# -----------------------------------------------------------------------------
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-# -----------------------------------------------------------------------------
+install -d -m 755 %{buildroot}%{_docdir}/%{name}-%{version}
+cp -pr xml-commons-external-1_2_04/java/external/build/docs/* %{buildroot}%{_docdir}/%{name}-%{version}
 
 %files 
 %defattr(0644,root,root,0755)
