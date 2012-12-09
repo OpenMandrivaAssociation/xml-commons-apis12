@@ -131,3 +131,15 @@ cp -pr xml-commons-external-1_2_04/java/external/build/docs/* %{buildroot}%{_doc
 
 # -----------------------------------------------------------------------------
 
+
+
+%changelog
+* Fri Jul 13 2012 Guilherme Moro <guilherme@mandriva.com> 1.2.04-8
++ Revision: 809090
+- clean up spec
+
+* Sun Nov 27 2011 Guilherme Moro <guilherme@mandriva.com> 1.2.04-7
++ Revision: 734302
+- rebuild
+- imported package xml-commons-apis12
+
