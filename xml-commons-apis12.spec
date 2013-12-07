@@ -1,7 +1,7 @@
 Name:           xml-commons-apis12
 Epoch:		1
 Version:        1.2.04
-Release:        9
+Release:        10
 Summary:        JAXP 1.2, DOM 2, SAX 2.0.1, SAX2-ext 1.0 apis
 Group:          System/Libraries
 URL:            http://xml.apache.org/commons/
